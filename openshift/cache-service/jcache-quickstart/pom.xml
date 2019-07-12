@@ -22,16 +22,30 @@
         <version.org.infinispan>9.4.13.Final-redhat-00002</version.org.infinispan>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.infinispan</groupId>
+                <artifactId>infinispan-bom</artifactId>
+                <version>${version.org.infinispan}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
-          <groupId>org.infinispan</groupId>
-          <artifactId>infinispan-remote</artifactId>
-          <version>9.4.13.Final-redhat-00002</version>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-client-hotrod</artifactId>
         </dependency>
         <dependency>
-          <groupId>javax.cache</groupId>
-          <artifactId>cache-api</artifactId>
-          <version>1.0.0</version>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-jcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
         </dependency>
     </dependencies>
 
@@ -58,22 +72,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                <execution>
-                    <id>build-classpath</id>
-                    <phase>generate-resources</phase>
-                    <goals>
-                        <goal>build-classpath</goal>
-                    </goals>
-                    <configuration>
-                        <outputFile>${project.build.directory}/lib/classpath</outputFile>
-                        <localRepoProperty>lib</localRepoProperty>
-                    </configuration>
-                </execution>
-            </executions>
-          </plugin>
         </plugins>
     </build>
 
